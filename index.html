@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kali Linux Blog - Seguridad Informática</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #00d4ff;
+        }
+
+        nav {
+            background: #16213e;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #00d4ff;
+            color: #16213e;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .info-box {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .info-box h3 {
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .section {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5f7f 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .post-card {
+            background: rgba(30, 58, 95, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 48px rgba(0, 212, 255, 0.3);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 2rem;
+        }
+
+        .post-card h3 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .post-card p {
+            color: #b0b0b0;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .post-meta {
+            color: #00d4ff;
+            font-size: 0.9rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .about-section {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3));
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            border: 2px solid rgba(138, 43, 226, 0.5);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #00d4ff;
+            object-fit: cover;
+        }
+
+        .contact-form {
+            background: rgba(30, 58, 95, 0.4);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #00d4ff;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #00d4ff;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #00d4ff;
+            border-radius: 8px;
+            background: rgba(30, 58, 95, 0.5);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .success-message {
+            background: rgba(0, 255, 136, 0.2);
+            border: 2px solid #00ff88;
+            color: #00ff88;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #0f1419;
+            color: #b0b0b0;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-image {
+                margin: 0 auto;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🛡️ Kali Linux Security Blog</h1>
+        <p>Explorando el mundo de la seguridad informática ética</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#acerca">Acerca de Mí</a></li>
+            <li><a href="#entradas">Entradas</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="info-box">
+            <h3>📝 Información del Trabajo</h3>
+            <p><strong>Alumno:</strong> Ivan Ezequiel Colman</p>
+            <p><strong>Curso:</strong> 6º II</p>
+            <p><strong>Profesora:</strong> Diana Sabrina Figueroa Olmedo</p>
+        </div>
+
+        <!-- 1. SECCIÓN INICIO (BIENVENIDO) -->
+        <section id="inicio" class="section">
+            <h2>🎯 Bienvenido al Blog de Kali Linux</h2>
+            <p>
+                Este blog nace de mi pasión por la seguridad informática y mi deseo de compartir 
+                conocimientos sobre Kali Linux, una de las herramientas más poderosas en el mundo 
+                del ethical hacking y la ciberseguridad.
+            </p>
+            <p>
+                Kali Linux es una distribución de Linux diseñada específicamente para profesionales 
+                de seguridad informática y auditores de penetración. A través de este blog, exploraremos 
+                sus herramientas, técnicas y mejores prácticas para aprender sobre seguridad de manera 
+                ética y responsable.
+            </p>
+            <p>
+                <strong>En este blog encontrarás:</strong> Tutoriales sobre herramientas de seguridad, 
+                guías paso a paso, análisis de técnicas de pentesting, y recursos educativos para 
+                adentrarte en el fascinante mundo de la ciberseguridad.
+            </p>
+        </section>
+
+        <!-- 2. SECCIÓN ACERCA DE MÍ -->
+        <section id="acerca" class="about-section">
+            <h2 style="font-size: 2rem; color: #00d4ff; text-align: center; margin-bottom: 2rem;">
+                👤 Acerca de Mí
+            </h2>
+            <div class="about-content">
+                <div>
+                </div>
+                <div>
+                    <h3 style="color: #00d4ff; margin-bottom: 1rem;">Hola, soy Ivan Ezequiel Colman</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                        Soy estudiante de 6º II con una gran pasión por la tecnología y la seguridad informática. 
+                        Desde pequeño me ha fascinado entender cómo funcionan las computadoras, las redes y los 
+                        sistemas de seguridad que protegen nuestra información digital.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                        <strong style="color: #00ff88;">¿Qué me motivó a crear este blog?</strong><br>
+                        Decidí crear esta página web para compartir mi conocimiento sobre Kali Linux y seguridad 
+                        informática. Mi objetivo es compartir a otros estudiantes sobre cómo usar estas 
+                        herramientas de manera ética y responsable, promoviendo el aprendizaje de la ciberseguridad.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                        <strong style="color: #00ff88;">Mis intereses en tecnología:</strong>
+                    </p>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="padding: 0.5rem 0;">🔐 Seguridad informática y ethical hacking</li>
+                        <li style="padding: 0.5rem 0;">💻 Programación y desarrollo web</li>
+                        <li style="padding: 0.5rem 0;">🌐 Redes y sistemas operativos Linux</li>
+                        <li style="padding: 0.5rem 0;">🛡️ Ciberseguridad y protección de datos</li>
+                        <li style="padding: 0.5rem 0;">🎓 Aprendizaje continuo sobre nuevas tecnologías</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SECCIÓN ENTRADAS DEL BLOG -->
+        <h2 id="entradas" style="font-size: 2rem; color: #00d4ff; text-align: center; margin: 3rem 0 2rem;">
+            📰 Entradas del Blog
+        </h2>
+        <div class="posts-grid">
+            <article class="post-card">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80" alt="Nmap" class="post-image">
+                <div class="post-content">
+                    <h3>Nmap - Network Mapper</h3>
+                    <p>
+                        Nmap es una herramienta esencial para el escaneo de redes y el descubrimiento de hosts. 
+                        Permite identificar dispositivos en una red, detectar puertos abiertos, servicios en 
+                        ejecución y sistemas operativos. Los profesionales de seguridad utilizan Nmap para 
+                        realizar auditorías, mapear infraestructuras de red y detectar vulnerabilidades. 
+                        Su versatilidad incluye múltiples modos de escaneo, desde sigilosos hasta agresivos. 
+                        Aprender Nmap es fundamental para cualquier persona interesada en ciberseguridad, 
+                        ya que proporciona visibilidad completa sobre la superficie de ataque de una red.
+                    </p>
+                    <div class="post-meta">
+                        👤 Ivan Colman | 📅 28 Nov 2025
+                    </div>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80" alt="Metasploit" class="post-image">
+                <div class="post-content">
+                    <h3>Metasploit Framework</h3>
+                    <p>
+                        Metasploit es el framework de pentesting más utilizado en el mundo. Ofrece una plataforma 
+                        completa para desarrollar y ejecutar exploits contra sistemas vulnerables en entornos 
+                        controlados. Incluye una base de datos masiva de exploits conocidos, payloads personalizables 
+                        y capacidades avanzadas de post-explotación. Los pentesters profesionales confían en 
+                        Metasploit para simular ataques reales y evaluar las defensas de las organizaciones. 
+                        Dominar esta herramienta requiere conocimientos profundos de sistemas, redes y programación, 
+                        pero es invaluable para la seguridad informática moderna.
+                    </p>
+                    <div class="post-meta">
+                        👤 Ivan Colman | 📅 28 Nov 2025
+                    </div>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80" alt="Wireshark" class="post-image">
+                <div class="post-content">
+                    <h3>Wireshark - Análisis de Tráfico</h3>
+                    <p>
+                        Wireshark es el analizador de protocolos de red líder en la industria. Permite capturar 
+                        y analizar el tráfico de red en tiempo real con un nivel de detalle extraordinario. 
+                        Decodifica cientos de protocolos diferentes y presenta la información de manera clara. 
+                        Los profesionales de seguridad lo usan para detectar comportamientos anómalos, identificar 
+                        intrusiones, analizar malware y realizar investigaciones forenses. Sus capacidades de 
+                        filtrado avanzado permiten centrarse en tráfico específico, facilitando el análisis 
+                        profundo de comunicaciones de red y la detección de amenazas.
+                    </p>
+                    <div class="post-meta">
+                        👤 Ivan Colman | 📅 28 Nov 2025
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- 4. SECCIÓN CONTACTO -->
+        <section id="contacto" class="section">
+            <h2 style="text-align: center; margin-bottom: 2rem;">📧 Contacto</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">
+                ¿Tienes preguntas o quieres colaborar? ¡Contáctame!
+            </p>
+            <div class="contact-form">
+                <div id="successMessage" class="success-message">
+                    ✅ ¡Mensaje enviado con éxito! Te responderé pronto.
+                </div>
+                <div class="form-group">
+                    <label>Tu Nombre:</label>
+                    <input type="text" id="contactName" placeholder="Ej: Juan Pérez">
+                </div>
+                <div class="form-group">
+                    <label>Tu Email:</label>
+                    <input type="email" id="contactEmail" placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Asunto:</label>
+                    <input type="text" id="contactSubject" placeholder="¿Sobre qué quieres hablar?">
+                </div>
+                <div class="form-group">
+                    <label>Mensaje:</label>
+                    <textarea id="contactMessage" placeholder="Escribe tu mensaje aquí..."></textarea>
+                </div>
+                <button class="btn-primary" onclick="sendMessage()">📨 Enviar Mensaje</button>
+            </div>
+            <div style="margin-top: 2rem; text-align: center;">
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                    <strong>También puedes encontrarme en:</strong>
+                </p>
+                <p style="color: #00d4ff;">
+                    📧 Email: ivancolman113@gmail.com<br>
+                    📱 WhatsApp: +54 370 400-7523
+                    📸 Instagram: @ivankft9888
+                </p>
+            </div>
+        </section>
+
+        <!-- ADVERTENCIA ÉTICA -->
+        <div class="section" style="background: linear-gradient(135deg, rgba(255, 170, 0, 0.2), rgba(255, 100, 0, 0.2)); border: 2px solid #ffaa00;">
+            <h3 style="color: #ffaa00; margin-bottom: 1rem;">⚠️ Consideraciones Éticas Importantes</h3>
+            <p>
+                Todas las técnicas y herramientas mostradas en este blog deben utilizarse únicamente 
+                en entornos autorizados y con fines educativos. El hacking no autorizado es ilegal 
+                y puede tener graves consecuencias legales. Siempre practica el hacking ético y responsable.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Kali Linux Security Blog - Ivan Ezequiel Colman</p>
+        <p>Creado con fines educativos para la materia de Hipermedia - 6º II</p>
+        <p style="margin-top: 1rem;">
+            Recursos adicionales: 
+            <a href="https://www.kali.org/" target="_blank">Kali.org</a> | 
+            <a href="https://www.offensive-security.com/" target="_blank">Offensive Security</a>
+        </p>
+    </footer>
+
+    <script>
+        function sendMessage() {
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const subject = document.getElementById('contactSubject').value;
+            const message = document.getElementById('contactMessage').value;
+
+            if (!name || !email || !subject || !message) {
+                alert('Por favor completa todos los campos del formulario');
+                return;
+            }
+
+            const successMsg = document.getElementById('successMessage');
+            successMsg.style.display = 'block';
+
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactSubject').value = '';
+            document.getElementById('contactMessage').value = '';
+
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
